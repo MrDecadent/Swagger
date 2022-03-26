@@ -28,12 +28,27 @@ public class SwaggerConfig {
     private String profiles;
 
     @Bean
+    public Docket docket1(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("GroupA");
+    }
+
+    @Bean
+    public Docket docket2(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("GroupB");
+    }
+
+    @Bean
+    public Docket docket3(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("GroupC");
+    }
+    @Bean
     public Docket docket(){
 
         boolean config_env = profiles.equals("dev");
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo_myself())
+                .groupName("MrHello")
                 .select()
                 //RequestHandlerSelectors 配置要扫描接口的方式
                 //basePackage() 指定要扫描的包
